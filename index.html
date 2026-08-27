@@ -63,59 +63,70 @@
   .btn-ghost{border-color:var(--line);color:var(--ink);background:var(--white);}
   .btn-ghost:hover{border-color:var(--blue);color:var(--blue-deep);}
 
-  /* ---------- Header & Navigation ---------- */
+  /* ---------- Floating Navigation Header ---------- */
   header {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--line);
+    position: fixed;
+    top: 16px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    pointer-events: none; /* Allows underlying page to remain clickable around margins */
   }
+
   .nav {
+    pointer-events: auto;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(220, 230, 236, 0.8);
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(20, 47, 69, 0.08);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 16px 0;
-    gap: 20px;
-    position: relative;
+    gap: 16px;
   }
+
   .logo {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     font-family: 'Fraunces', serif;
     font-weight: 600;
-    font-size: 20px;
-    cursor: pointer;
+    font-size: 18px;
+    color: var(--ink);
     flex-shrink: 0;
   }
   .logo-mark {
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     flex: none;
   }
+
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 24px;
-    font-size: 14px;
+    gap: 20px;
+    font-size: 13.5px;
     font-weight: 500;
     color: var(--ink-soft);
   }
   .nav-links a:hover {
     color: var(--blue-deep);
   }
+
   .nav-cta {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 14px;
     flex-shrink: 0;
   }
   .nav-phone {
     font-family: 'IBM Plex Mono', monospace;
-    font-size: 13.5px;
+    font-size: 13px;
     color: var(--ink-soft);
   }
 
@@ -124,16 +135,30 @@
     background: none;
     border: none;
     cursor: pointer;
-    padding: 6px;
+    padding: 4px;
     color: var(--ink);
   }
   .menu-toggle svg {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
   }
 
-  /* Mobile overlay navigation */
-  @media (max-width: 1020px) {
+  /* Desktop spacing offset to prevent hero overlap */
+  body {
+    padding-top: 80px;
+  }
+
+  /* Mobile Responsive Floating Menu */
+  @media (max-width: 960px) {
+    header {
+      top: 12px;
+      padding: 0 16px;
+    }
+    .nav {
+      border-radius: 20px;
+      padding: 10px 16px;
+      position: relative;
+    }
     .menu-toggle {
       display: block;
     }
@@ -143,34 +168,43 @@
     .nav-cta .btn-whatsapp {
       display: none;
     }
+
     .nav-links {
       display: none;
       position: absolute;
-      top: 100%;
+      top: calc(100% + 8px);
       left: 0;
       right: 0;
-      background: var(--white);
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      box-shadow: 0 16px 32px rgba(20, 47, 69, 0.12);
       flex-direction: column;
       align-items: stretch;
+      padding: 12px 16px;
       gap: 0;
-      padding: 16px 24px 24px;
-      border-bottom: 1px solid var(--line);
-      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.08);
-      z-index: 99;
     }
     .nav-links.active {
       display: flex;
     }
     .nav-links a {
-      padding: 12px 0;
+      padding: 10px 8px;
       border-bottom: 1px solid var(--mist);
-      font-size: 15.5px;
+      font-size: 14.5px;
     }
     .mobile-menu-cta {
-      margin-top: 14px;
+      display: flex !important;
+      margin-top: 10px;
       border-bottom: none !important;
-      padding: 14px 24px !important;
       justify-content: center;
+    }
+  }
+
+  @media (min-width: 961px) {
+    .mobile-menu-cta {
+      display: none !important;
     }
   }
 
@@ -343,9 +377,9 @@
 </head>
 <body id="top">
 
-<!-- ============ HEADER ============ -->
+<!-- ============ FLOATING HEADER ============ -->
 <header>
-  <div class="wrap nav">
+  <div class="nav">
     <a href="#top" class="logo" title="Back to top">
       <svg class="logo-mark" viewBox="0 0 34 34" fill="none">
         <circle cx="17" cy="17" r="16" stroke="#1F6FA8" stroke-width="1.6"/>
@@ -353,10 +387,6 @@
       </svg>
       Rapha Medical Center
     </a>
-
-    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
 
     <nav class="nav-links" id="navLinks">
       <a href="#services" onclick="closeMenu()">Services</a>
@@ -371,6 +401,9 @@
     <div class="nav-cta">
       <span class="nav-phone">021 476 0702</span>
       <a href="https://wa.me/27634112060" target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
     </div>
   </div>
 </header>
