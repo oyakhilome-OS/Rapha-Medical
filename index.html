@@ -64,43 +64,113 @@
   .btn-ghost:hover{border-color:var(--blue);color:var(--blue-deep);}
 
   /* ---------- Header & Navigation ---------- */
-  header{
-    position:sticky;top:0;z-index:50;
-    background:rgba(255,255,255,.96);backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
   }
-  .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0;gap:20px;}
-  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:20px;cursor:pointer;flex-shrink:0;}
-  .logo-mark{width:34px;height:34px;flex:none;}
-  .nav-links{display:flex;align-items:center;gap:24px;font-size:14px;font-weight:500;color:var(--ink-soft);}
-  .nav-links a:hover{color:var(--blue-deep);}
-  .mobile-cta-btn{display:none;}
-  .nav-cta{display:flex;align-items:center;gap:16px;flex-shrink:0;}
-  .nav-phone{font-family:'IBM Plex Mono',monospace;font-size:13.5px;color:var(--ink-soft);}
-
-  .menu-toggle{
-    display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink);
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    gap: 20px;
+    position: relative;
   }
-  .menu-toggle svg{width:26px;height:26px;}
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 20px;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .logo-mark {
+    width: 34px;
+    height: 34px;
+    flex: none;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+  }
+  .nav-links a:hover {
+    color: var(--blue-deep);
+  }
+  .nav-cta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-shrink: 0;
+  }
+  .nav-phone {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+  }
 
-  @media(max-width:1020px){
-    .menu-toggle{display:block;}
-    .nav-phone{display:none;}
-    .nav-cta .btn-whatsapp{display:none;}
-    .mobile-cta-btn{display:flex;}
-    .nav-links{
-      display:none;
-      position:absolute;top:100%;left:0;right:0;
-      background:var(--white);
-      flex-direction:column;align-items:stretch;gap:0;
-      padding:16px 24px 24px;
-      border-bottom:1px solid var(--line);
-      box-shadow:0 20px 30px rgba(0,0,0,.08);
+  .menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    color: var(--ink);
+  }
+  .menu-toggle svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  /* Mobile overlay navigation */
+  @media (max-width: 1020px) {
+    .menu-toggle {
+      display: block;
     }
-    .nav-links.active{display:flex;}
-    .nav-links a{padding:12px 0;border-bottom:1px solid var(--mist);font-size:15.5px;}
-    .nav-links .mobile-cta-btn{
-      margin-top:14px;border-bottom:none;padding:14px 24px;justify-content:center;
+    .nav-phone {
+      display: none;
+    }
+    .nav-cta .btn-whatsapp {
+      display: none;
+    }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 16px 24px 24px;
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.08);
+      z-index: 99;
+    }
+    .nav-links.active {
+      display: flex;
+    }
+    .nav-links a {
+      padding: 12px 0;
+      border-bottom: 1px solid var(--mist);
+      font-size: 15.5px;
+    }
+    .mobile-menu-cta {
+      margin-top: 14px;
+      border-bottom: none !important;
+      padding: 14px 24px !important;
+      justify-content: center;
     }
   }
 
@@ -295,7 +365,7 @@
       <a href="#location" onclick="closeMenu()">Location</a>
       <a href="#health-tips" onclick="closeMenu()">Health Tips</a>
       <a href="#book" onclick="closeMenu()">Book Appointment</a>
-      <a href="https://wa.me/27634112060" target="_blank" class="btn btn-whatsapp mobile-cta-btn">Book via WhatsApp</a>
+      <a href="https://wa.me/27634112060" target="_blank" class="btn btn-whatsapp mobile-menu-cta">Book via WhatsApp</a>
     </nav>
 
     <div class="nav-cta">
