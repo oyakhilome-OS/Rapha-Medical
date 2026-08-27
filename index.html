@@ -47,7 +47,7 @@
   .italic{font-style:italic;font-weight:400;color:var(--blue-deep);}
   p{color:var(--ink-soft);}
   .btn{
-    display:inline-flex;align-items:center;gap:8px;
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
     padding:14px 26px;border-radius:999px;
     font-weight:600;font-size:15px;
     border:1.5px solid transparent;
@@ -59,13 +59,11 @@
   .btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(37,211,102,.36);}
   .btn-ghost{border-color:var(--line);color:var(--ink);background:var(--white);}
   .btn-ghost:hover{border-color:var(--blue);color:var(--blue-deep);}
-  .btn-light{border-color:rgba(255,255,255,.35);color:var(--white);}
-  .btn-light:hover{background:rgba(255,255,255,.1);}
 
-  /* ---------- Header ---------- */
+  /* ---------- Header & Mobile Menu ---------- */
   header{
     position:sticky;top:0;z-index:50;
-    background:rgba(255,255,255,.88);backdrop-filter:blur(10px);
+    background:rgba(255,255,255,.94);backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);
   }
   .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
@@ -75,9 +73,30 @@
   .nav-links a:hover{color:var(--blue-deep);}
   .nav-cta{display:flex;align-items:center;gap:14px;}
   .nav-phone{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink-soft);}
+
+  .menu-toggle{
+    display:none;background:none;border:none;cursor:pointer;padding:6px;color:var(--ink);
+  }
+  .menu-toggle svg{width:26px;height:26px;}
+
   @media(max-width:860px){
-    .nav-links{display:none;}
+    .menu-toggle{display:block;}
     .nav-phone{display:none;}
+    .nav-cta .btn-whatsapp{display:none;}
+    .nav-links{
+      display:none;
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--white);
+      flex-direction:column;gap:0;
+      padding:16px 32px 24px;
+      border-bottom:1px solid var(--line);
+      box-shadow:0 20px 30px rgba(0,0,0,.08);
+    }
+    .nav-links.active{display:flex;}
+    .nav-links a{padding:12px 0;border-bottom:1px solid var(--mist);font-size:16px;}
+    .nav-links .mobile-cta-btn{
+      margin-top:14px;border-bottom:none;padding:14px 24px;text-align:center;
+    }
   }
 
   /* ---------- Hero ---------- */
@@ -135,7 +154,6 @@
   .section-head p{margin-top:14px;font-size:16.5px;}
   .center{text-align:center;margin-left:auto;margin-right:auto;}
 
-  /* pulse divider */
   .pulse-divider{width:100%;height:44px;opacity:.5;}
   .pulse-divider path{fill:none;stroke:var(--teal);stroke-width:1.6;}
 
@@ -179,12 +197,12 @@
   details[open] summary .plus{transform:rotate(45deg);}
   details p{margin-top:12px;font-size:15px;max-width:640px;}
 
-  /* ---------- Location ---------- */
+  /* ---------- Location & Red Pin Map ---------- */
   .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:stretch;}
   @media(max-width:860px){.loc-grid{grid-template-columns:1fr;}}
   .map-box{
     border-radius:18px;border:1px solid var(--line);overflow:hidden;min-height:340px;
-    background:var(--mist);
+    background:var(--mist);position:relative;
   }
   .map-box iframe{width:100%;height:100%;min-height:340px;border:0;}
   .loc-info{background:var(--mist);border-radius:18px;padding:36px;border:1px solid var(--line);}
@@ -205,7 +223,7 @@
   .blog-body p{font-size:14px;}
   .blog-read{font-size:13.5px;font-weight:600;color:var(--blue-deep);margin-top:14px;display:inline-block;}
 
-  /* ---------- Booking ---------- */
+  /* ---------- Booking & Form ---------- */
   .booking{background:var(--ink);color:var(--white);}
   .booking .eyebrow{color:#7FD6C9;}
   .booking h2{color:var(--white);}
@@ -213,7 +231,16 @@
   .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
   @media(max-width:860px){.booking-grid{grid-template-columns:1fr;}}
   .form-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:32px;}
-  .booking-buttons{display:flex;flex-direction:column;gap:14px;margin-top:20px;}
+  
+  .form-group{margin-bottom:16px;}
+  .form-group label{display:block;font-size:13px;font-family:'IBM Plex Mono',monospace;color:#B9CBDA;margin-bottom:6px;text-transform:uppercase;}
+  .form-control{
+    width:100%;padding:12px 16px;border-radius:8px;border:1px solid rgba(255,255,255,.18);
+    background:rgba(0,0,0,.2);color:var(--white);font-family:'Inter',sans-serif;font-size:14.5px;
+  }
+  .form-control:focus{outline:none;border-color:var(--teal);}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
   .contact-card{padding-top:8px;}
   .contact-card .loc-row .lab{color:#7FD6C9;}
   .contact-card .loc-row div:last-child{color:#DCE7EF;}
@@ -244,13 +271,21 @@
       </svg>
       Rapha Medical Center
     </a>
-    <nav class="nav-links">
-      <a href="#services">Services</a>
-      <a href="#testimonials">Patients</a>
-      <a href="#faq">FAQ</a>
-      <a href="#location">Location</a>
-      <a href="#health-tips">Health Tips</a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="#services" onclick="closeMenu()">Services</a>
+      <a href="#testimonials" onclick="closeMenu()">Patients</a>
+      <a href="#faq" onclick="closeMenu()">FAQ</a>
+      <a href="#location" onclick="closeMenu()">Location</a>
+      <a href="#health-tips" onclick="closeMenu()">Health Tips</a>
+      <a href="#book" onclick="closeMenu()">Book Appointment</a>
+      <a href="https://wa.me/27634112060" target="_blank" class="btn btn-whatsapp mobile-cta-btn">Book via WhatsApp</a>
     </nav>
+
     <div class="nav-cta">
       <span class="nav-phone">021 476 0702</span>
       <a href="https://wa.me/27634112060" target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
@@ -266,8 +301,8 @@
       <h1>Care that knows<br>your <span class="italic">whole family,</span><br>not just your file.</h1>
       <p class="lede">Same-week appointments, doctors who remember your history, and a practice built around getting you seen quickly — not shuffled through a queue.</p>
       <div class="hero-actions">
+        <a href="#book" class="btn btn-primary">Request Appointment</a>
         <a href="https://wa.me/27634112060" target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
-        <a href="mailto:help@raphamedical.co.za" class="btn btn-primary">Book via Email</a>
         <a href="#services" class="btn btn-ghost">See our services</a>
       </div>
       <div class="hero-stats">
@@ -426,14 +461,13 @@
     </div>
     <div class="loc-grid">
       <div class="map-box">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3316.5492161109966!2d18.471207876722883!3d-33.77232231405072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc594411fbce3b%3A0xe5a3c63162fb167d!2sTable%20Bay%20Mall!5e0!3m2!1sen!2sza!4v1710000000000!5m2!1sen!2sza" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://maps.google.com/maps?q=-33.7723223,18.4712078&amp;hl=es;z=16&amp;output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
       <div class="loc-info">
         <h3>Rapha Medical Center</h3>
-        <div class="loc-row"><span class="lab">Address</span><span>Shop G057, Table Bay Mall, Berkshire Blvd, Sunningdale, Cape Town, 7441</span></div>
+        <div class="loc-row"><span class="lab">Address</span><span>R27, Corner of Berkshire Blvd, Sunningdale, Cape Town (Shop G057, Table Bay Mall)</span></div>
         <div class="loc-row"><span class="lab">Phone</span><span>021 476 0702</span></div>
         <div class="loc-row"><span class="lab">WhatsApp</span><span>+27 63 411 2060</span></div>
-        <div class="loc-row"><span class="lab">WhatsApp</span><span>+27 71 947 1474</span></div>
         <div class="loc-row"><span class="lab">Email</span><span>help@raphamedical.co.za</span></div>
         <div class="loc-row" style="align-items:flex-start;">
           <span class="lab">Hours</span>
@@ -444,7 +478,7 @@
             <div><span>Public holidays</span><span>Closed</span></div>
           </div>
         </div>
-        <a href="https://maps.google.com/?q=Shop+G057,+Table+Bay+Mall,+Berkshire+Blvd,+Sunningdale,+Cape+Town" target="_blank" class="btn btn-ghost" style="margin-top:8px;">Get directions</a>
+        <a href="https://maps.google.com/?q=R27,+Corner+of+Berkshire+Blvd,+Sunningdale,+Cape+Town" target="_blank" class="btn btn-ghost" style="margin-top:8px;">Get directions</a>
       </div>
     </div>
   </div>
@@ -495,28 +529,56 @@
     <div>
       <span class="eyebrow">Book a visit</span>
       <h2>Let's get you <span style="color:#7FD6C9;font-style:italic;">seen.</span></h2>
-      <p style="margin-top:14px;max-width:420px;">Get in touch directly via WhatsApp or email to schedule your appointment. For anything urgent, please call us directly.</p>
+      <p style="margin-top:14px;max-width:420px;">Fill in your details to submit an appointment request via Email or WhatsApp. For urgent medical issues, please call directly.</p>
 
       <div class="contact-card" style="margin-top:36px;">
         <div class="loc-row"><span class="lab">Call</span><div>021 476 0702</div></div>
-        <div class="loc-row"><span class="lab">WhatsApp</span><span>+27 71 947 1474</span></div>
         <div class="loc-row"><span class="lab">WhatsApp</span><div>+27 63 411 2060</div></div>
         <div class="loc-row"><span class="lab">Email</span><div>help@raphamedical.co.za</div></div>
-        <div class="loc-row"><span class="lab">Visit</span><div>Shop G057, Table Bay Mall, Berkshire Blvd, Sunningdale, Cape Town</div></div>
+        <div class="loc-row"><span class="lab">Visit</span><div>R27, Corner of Berkshire Blvd, Sunningdale, Cape Town</div></div>
       </div>
 
       <div class="emergency">In a medical emergency, call 10177 or go to your nearest emergency room.</div>
     </div>
 
     <div class="form-card">
-      <h3 style="color:var(--white);margin-bottom:12px;">Schedule an Appointment</h3>
-      <p style="font-size:14px;color:#B9CBDA;margin-bottom:20px;">Choose your preferred method to book a visit with our team:</p>
-      
-      <div class="booking-buttons">
-        <a href="https://wa.me/27634112060" target="_blank" class="btn btn-whatsapp" style="justify-content:center;width:100%;">Book via WhatsApp</a>
-        <a href="mailto:help@raphamedical.co.za?subject=Appointment%20Request%20-%20Rapha%20Medical%20Center" class="btn btn-primary" style="justify-content:center;width:100%;">Book via Email</a>
-        <a href="tel:0214760702" class="btn btn-ghost" style="justify-content:center;width:100%;color:var(--white);border-color:rgba(255,255,255,.2);background:transparent;">Call 021 476 0702</a>
-      </div>
+      <h3 style="color:var(--white);margin-bottom:16px;">Request an Appointment</h3>
+      <form id="appointmentForm" onsubmit="event.preventDefault();">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" id="patientName" class="form-control" placeholder="e.g. Jane Doe" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" id="patientPhone" class="form-control" placeholder="082 123 4567" required>
+          </div>
+          <div class="form-group">
+            <label>Preferred Date</label>
+            <input type="date" id="preferredDate" class="form-control" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Service Required</label>
+          <select id="serviceSelect" class="form-control">
+            <option value="General Medical Consultation">General Medical Consultation</option>
+            <option value="Medical Certificate">Medical Certificate</option>
+            <option value="Adult & Child Health">Adult & Child Health</option>
+            <option value="Antenatal Care">Antenatal Care</option>
+            <option value="Preventive Medicine">Preventive Medicine</option>
+            <option value="Minor Procedures & Circumcision">Minor Procedures & Circumcision</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Notes / Reason for visit</label>
+          <textarea id="patientNotes" class="form-control" rows="3" placeholder="Brief details..."></textarea>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:20px;">
+          <button type="button" onclick="sendViaEmail()" class="btn btn-primary" style="width:100%;">Submit Request via Email</button>
+          <button type="button" onclick="sendViaWhatsApp()" class="btn btn-whatsapp" style="width:100%;">Submit Request via WhatsApp</button>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -556,7 +618,7 @@
           <li>021 476 0702</li>
           <li>+27 63 411 2060</li>
           <li>help@raphamedical.co.za</li>
-          <li>Shop G057, Table Bay Mall, Sunningdale</li>
+          <li>R27, Corner of Berkshire Blvd, Sunningdale</li>
         </ul>
       </div>
     </div>
@@ -565,6 +627,61 @@
     </div>
   </div>
 </footer>
+
+<script>
+  // Mobile Menu Toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+
+  function closeMenu() {
+    navLinks.classList.remove('active');
+  }
+
+  // Form helper to capture field values
+  function getFormData() {
+    return {
+      name: document.getElementById('patientName').value || 'Not provided',
+      phone: document.getElementById('patientPhone').value || 'Not provided',
+      date: document.getElementById('preferredDate').value || 'As soon as possible',
+      service: document.getElementById('serviceSelect').value,
+      notes: document.getElementById('patientNotes').value || 'None'
+    };
+  }
+
+  // Submit via Email
+  function sendViaEmail() {
+    const data = getFormData();
+    const subject = encodeURIComponent(`Appointment Request - ${data.name}`);
+    const body = encodeURIComponent(
+      `Hello Rapha Medical Center,\n\nI would like to request an appointment with the following details:\n\n` +
+      `Name: ${data.name}\n` +
+      `Phone: ${data.phone}\n` +
+      `Preferred Date: ${data.date}\n` +
+      `Service: ${data.service}\n` +
+      `Notes: ${data.notes}\n\n` +
+      `Please contact me to confirm.\nThank you.`
+    );
+    window.location.href = `mailto:help@raphamedical.co.za?subject=${subject}&body=${body}`;
+  }
+
+  // Submit via WhatsApp with parameters
+  function sendViaWhatsApp() {
+    const data = getFormData();
+    const message = encodeURIComponent(
+      `Hello Rapha Medical Center, I would like to request an appointment:\n\n` +
+      `*Name:* ${data.name}\n` +
+      `*Phone:* ${data.phone}\n` +
+      `*Preferred Date:* ${data.date}\n` +
+      `*Service:* ${data.service}\n` +
+      `*Notes:* ${data.notes}`
+    );
+    window.open(`https://wa.me/27634112060?text=${message}`, '_blank');
+  }
+</script>
 
 </body>
 </html>
