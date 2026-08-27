@@ -55,6 +55,8 @@
   }
   .btn-primary{background:var(--pulse);color:var(--white);box-shadow:0 6px 18px rgba(232,96,76,.28);}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(232,96,76,.36);}
+  .btn-whatsapp{background:#25D366;color:var(--white);box-shadow:0 6px 18px rgba(37,211,102,.28);}
+  .btn-whatsapp:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(37,211,102,.36);}
   .btn-ghost{border-color:var(--line);color:var(--ink);background:var(--white);}
   .btn-ghost:hover{border-color:var(--blue);color:var(--blue-deep);}
   .btn-light{border-color:rgba(255,255,255,.35);color:var(--white);}
@@ -67,13 +69,12 @@
     border-bottom:1px solid var(--line);
   }
   .nav{display:flex;align-items:center;justify-content:space-between;padding:18px 0;}
-  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:20px;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Fraunces',serif;font-weight:600;font-size:20px;cursor:pointer;}
   .logo-mark{width:34px;height:34px;flex:none;}
   .nav-links{display:flex;gap:34px;font-size:14.5px;font-weight:500;color:var(--ink-soft);}
   .nav-links a:hover{color:var(--blue-deep);}
-  .nav-cta{display:flex;align-items:center;gap:18px;}
+  .nav-cta{display:flex;align-items:center;gap:14px;}
   .nav-phone{font-family:'IBM Plex Mono',monospace;font-size:14px;color:var(--ink-soft);}
-  .menu-btn{display:none;background:none;border:none;cursor:pointer;}
   @media(max-width:860px){
     .nav-links{display:none;}
     .nav-phone{display:none;}
@@ -183,19 +184,9 @@
   @media(max-width:860px){.loc-grid{grid-template-columns:1fr;}}
   .map-box{
     border-radius:18px;border:1px solid var(--line);overflow:hidden;min-height:340px;
-    background:
-      linear-gradient(0deg, rgba(31,111,168,.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(31,111,168,.06) 1px, transparent 1px),
-      var(--mist);
-    background-size:28px 28px;
-    position:relative;
+    background:var(--mist);
   }
-  .map-pin{
-    position:absolute;top:48%;left:52%;transform:translate(-50%,-100%);
-    width:36px;height:36px;border-radius:50% 50% 50% 0;background:var(--pulse);
-    box-shadow:0 8px 18px rgba(232,96,76,.35);
-  }
-  .map-pin::after{content:"";position:absolute;inset:9px;background:var(--white);border-radius:50%;}
+  .map-box iframe{width:100%;height:100%;min-height:340px;border:0;}
   .loc-info{background:var(--mist);border-radius:18px;padding:36px;border:1px solid var(--line);}
   .loc-info h3{margin-bottom:18px;}
   .loc-row{display:flex;gap:14px;margin-bottom:18px;font-size:14.5px;}
@@ -222,15 +213,7 @@
   .booking-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
   @media(max-width:860px){.booking-grid{grid-template-columns:1fr;}}
   .form-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:32px;}
-  .field{margin-bottom:18px;}
-  .field label{display:block;font-size:13px;color:#B9CBDA;margin-bottom:7px;font-family:'IBM Plex Mono',monospace;}
-  .field input,.field select,.field textarea{
-    width:100%;padding:13px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.18);
-    background:rgba(255,255,255,.06);color:var(--white);font-family:'Inter',sans-serif;font-size:14.5px;
-  }
-  .field textarea{border-radius:9px;}
-  .field input::placeholder,.field textarea::placeholder{color:#7C93A6;}
-  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .booking-buttons{display:flex;flex-direction:column;gap:14px;margin-top:20px;}
   .contact-card{padding-top:8px;}
   .contact-card .loc-row .lab{color:#7FD6C9;}
   .contact-card .loc-row div:last-child{color:#DCE7EF;}
@@ -249,18 +232,18 @@
   ::selection{background:var(--pulse);color:var(--white);}
 </style>
 </head>
-<body>
+<body id="top">
 
 <!-- ============ HEADER ============ -->
 <header>
   <div class="wrap nav">
-    <div class="logo">
+    <a href="#top" class="logo" title="Back to top">
       <svg class="logo-mark" viewBox="0 0 34 34" fill="none">
         <circle cx="17" cy="17" r="16" stroke="#1F6FA8" stroke-width="1.6"/>
         <path d="M5 17H11L14 9L20 25L23 17H29" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       Rapha Medical Center
-    </div>
+    </a>
     <nav class="nav-links">
       <a href="#services">Services</a>
       <a href="#testimonials">Patients</a>
@@ -270,7 +253,7 @@
     </nav>
     <div class="nav-cta">
       <span class="nav-phone">021 476 0702</span>
-      <a href="#book" class="btn btn-primary">Book a visit</a>
+      <a href="https://wa.me/27634112060" target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
     </div>
   </div>
 </header>
@@ -283,7 +266,8 @@
       <h1>Care that knows<br>your <span class="italic">whole family,</span><br>not just your file.</h1>
       <p class="lede">Same-week appointments, doctors who remember your history, and a practice built around getting you seen quickly — not shuffled through a queue.</p>
       <div class="hero-actions">
-        <a href="#book" class="btn btn-primary">Book an appointment</a>
+        <a href="https://wa.me/27634112060" target="_blank" class="btn btn-whatsapp">Book via WhatsApp</a>
+        <a href="mailto:help@raphamedical.co.za" class="btn btn-primary">Book via Email</a>
         <a href="#services" class="btn btn-ghost">See our services</a>
       </div>
       <div class="hero-stats">
@@ -294,7 +278,7 @@
     </div>
     <div class="hero-visual">
       <div class="hero-card">
-        <span class="badge-float">Next available: Today, 3:40pm</span>
+        <span class="badge-float">Next available: Today</span>
         <div class="hero-photo">[ Placeholder — photo of clinic reception / doctor with patient ]</div>
         <svg class="hero-pulse-line" viewBox="0 0 400 60" preserveAspectRatio="none">
           <path d="M0 30 H130 L145 10 L162 50 L178 30 H400" />
@@ -318,52 +302,52 @@
 <section id="services">
   <div class="wrap">
     <div class="section-head">
-      <span class="eyebrow">What we treat</span>
+      <span class="eyebrow">What we offer</span>
       <h2>Everyday care, <span class="italic">handled properly.</span></h2>
-      <p>From annual check-ups to chronic condition management, our GPs handle the full range of family health — and refer out only when a specialist genuinely adds value.</p>
+      <p>From comprehensive primary care to specialized family consultations, we provide a complete range of medical services tailored to your health needs.</p>
     </div>
     <div class="services-grid">
       <div class="service-card">
         <div class="service-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.35-9.5-8.5C.7 8.6 2.7 5 6.3 5c2 0 3.4 1.1 4 2.2C10.9 6.1 12.3 5 14.3 5c3.6 0 5.6 3.6 3.8 7.5C19.1 16.65 12 21 12 21z" stroke="currentColor" stroke-width="1.6"/></svg>
         </div>
-        <h3>General check-ups</h3>
-        <p>Annual physicals, health screenings and preventative care tailored to your age and risk profile.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 4h4v4H4V4zm12 12h4v4h-4v-4zM4 20l16-16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-        </div>
-        <h3>Chronic condition management</h3>
-        <p>Diabetes, hypertension and asthma care with regular monitoring and medication reviews.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="1.6"/></svg>
-        </div>
-        <h3>Paediatric care</h3>
-        <p>Vaccinations, growth tracking and sick-visits for infants through to teens.</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 12h6M12 9v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg>
-        </div>
-        <h3>Urgent & same-day visits</h3>
-        <p>Reserved daily slots for injuries, infections and anything that can't wait a week.</p>
+        <h3>General Medical Consultations</h3>
+        <p>Comprehensive consultations for acute illnesses, chronic disease monitoring, and overall health assessments.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><rect x="4" y="3" width="16" height="18" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 8h8M8 12h8M8 16h5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         </div>
-        <h3>Women's health</h3>
-        <p>Pap smears, contraception counselling, prenatal referrals and hormonal health.</p>
+        <h3>Medical Certificates</h3>
+        <p>Official medical notes, sick certificates, insurance medicals, and clinical fitness assessments.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.4" stroke="currentColor" stroke-width="1.6"/><path d="M5 21c0-3.9 3.1-7 7-7s7 3.1 7 7" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <h3>Adult &amp; Child Health</h3>
+        <p>Pediatric growth tracking, vaccinations, adolescent care, adult health checks, and routine family wellness.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 21a9 9 0 100-18 9 9 0 000 18z" stroke="currentColor" stroke-width="1.6"/><path d="M12 7v5l3 3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <h3>Antenatal Care</h3>
+        <p>Routine pregnancy consultations, maternal health monitoring, prenatal check-ups, and referral coordination.</p>
       </div>
       <div class="service-card">
         <div class="service-icon">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
         </div>
-        <h3>Vaccinations & travel health</h3>
-        <p>Routine immunisations plus travel vaccines and pre-trip health consultations.</p>
+        <h3>Preventive Medicine</h3>
+        <p>Early screenings, lifestyle medicine guidance, routine immunizations, and proactive risk evaluations.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 12h6M12 9v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <h3>Minor Procedures &amp; Circumcision</h3>
+        <p>In-office minor surgical procedures, wound care, suturing, and safe clinical circumcision services.</p>
       </div>
     </div>
   </div>
@@ -419,7 +403,7 @@
       </details>
       <details>
         <summary>Can I register as a new patient?<span class="plus">+</span></summary>
-        <p>Absolutely. New patients are welcome — use the booking form below or call us directly, and we'll set up your file ahead of your first visit.</p>
+        <p>Absolutely. New patients are welcome — book directly via WhatsApp or email, and we'll set up your file ahead of your first visit.</p>
       </details>
       <details>
         <summary>Do you see children and infants?<span class="plus">+</span></summary>
@@ -441,11 +425,15 @@
       <h2>One practice, <span class="italic">easy to reach.</span></h2>
     </div>
     <div class="loc-grid">
-      <div class="map-box"><div class="map-pin"></div></div>
+      <div class="map-box">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3316.5492161109966!2d18.471207876722883!3d-33.77232231405072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1dcc594411fbce3b%3A0xe5a3c63162fb167d!2sTable%20Bay%20Mall!5e0!3m2!1sen!2sza!4v1710000000000!5m2!1sen!2sza" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
       <div class="loc-info">
         <h3>Rapha Medical Center</h3>
-        <div class="loc-row"><span class="lab">Address</span><span>Shop G057, Table Bay Mall, Berkshire Blvd, Sunningdale, Cape Town</span></div>
+        <div class="loc-row"><span class="lab">Address</span><span>Shop G057, Table Bay Mall, Berkshire Blvd, Sunningdale, Cape Town, 7441</span></div>
         <div class="loc-row"><span class="lab">Phone</span><span>021 476 0702</span></div>
+        <div class="loc-row"><span class="lab">WhatsApp</span><span>+27 63 411 2060</span></div>
+        <div class="loc-row"><span class="lab">WhatsApp</span><span>+27 71 947 1474</span></div>
         <div class="loc-row"><span class="lab">Email</span><span>help@raphamedical.co.za</span></div>
         <div class="loc-row" style="align-items:flex-start;">
           <span class="lab">Hours</span>
@@ -456,7 +444,7 @@
             <div><span>Public holidays</span><span>Closed</span></div>
           </div>
         </div>
-        <a href="#" class="btn btn-ghost" style="margin-top:8px;">Get directions</a>
+        <a href="https://maps.google.com/?q=Shop+G057,+Table+Bay+Mall,+Berkshire+Blvd,+Sunningdale,+Cape+Town" target="_blank" class="btn btn-ghost" style="margin-top:8px;">Get directions</a>
       </div>
     </div>
   </div>
@@ -507,45 +495,28 @@
     <div>
       <span class="eyebrow">Book a visit</span>
       <h2>Let's get you <span style="color:#7FD6C9;font-style:italic;">seen.</span></h2>
-      <p style="margin-top:14px;max-width:420px;">Fill in the form and our front desk will confirm your slot within one business day. For anything urgent, please call us directly rather than waiting on a form.</p>
+      <p style="margin-top:14px;max-width:420px;">Get in touch directly via WhatsApp or email to schedule your appointment. For anything urgent, please call us directly.</p>
 
       <div class="contact-card" style="margin-top:36px;">
         <div class="loc-row"><span class="lab">Call</span><div>021 476 0702</div></div>
+        <div class="loc-row"><span class="lab">WhatsApp</span><span>+27 71 947 1474</span></div>
+        <div class="loc-row"><span class="lab">WhatsApp</span><div>+27 63 411 2060</div></div>
         <div class="loc-row"><span class="lab">Email</span><div>help@raphamedical.co.za</div></div>
-        <div class="loc-row"><span class="lab">Visit</span><div>Shop G057, Table Bay Mall, Berkshire Blvd, Sunningdale, Cape Town, 7441.</div></div>
+        <div class="loc-row"><span class="lab">Visit</span><div>Shop G057, Table Bay Mall, Berkshire Blvd, Sunningdale, Cape Town</div></div>
       </div>
 
-      <div class="emergency">In a medical emergency, do not use this form — call 10177 or go to your nearest emergency room.</div>
+      <div class="emergency">In a medical emergency, call 10177 or go to your nearest emergency room.</div>
     </div>
 
     <div class="form-card">
-      <div class="field-row">
-        <div class="field"><label>First name</label><input type="text" placeholder="Jane"></div>
-        <div class="field"><label>Last name</label><input type="text" placeholder="Adams"></div>
+      <h3 style="color:var(--white);margin-bottom:12px;">Schedule an Appointment</h3>
+      <p style="font-size:14px;color:#B9CBDA;margin-bottom:20px;">Choose your preferred method to book a visit with our team:</p>
+      
+      <div class="booking-buttons">
+        <a href="https://wa.me/27634112060" target="_blank" class="btn btn-whatsapp" style="justify-content:center;width:100%;">Book via WhatsApp</a>
+        <a href="mailto:help@raphamedical.co.za?subject=Appointment%20Request%20-%20Rapha%20Medical%20Center" class="btn btn-primary" style="justify-content:center;width:100%;">Book via Email</a>
+        <a href="tel:0214760702" class="btn btn-ghost" style="justify-content:center;width:100%;color:var(--white);border-color:rgba(255,255,255,.2);background:transparent;">Call 021 476 0702</a>
       </div>
-      <div class="field-row">
-        <div class="field"><label>Phone</label><input type="tel" placeholder="+27 82 000 0000"></div>
-        <div class="field"><label>Email</label><input type="email" placeholder="jane@email.com"></div>
-      </div>
-      <div class="field">
-        <label>Reason for visit</label>
-        <select>
-          <option>General check-up</option>
-          <option>Follow-up / chronic care</option>
-          <option>Sick visit / urgent</option>
-          <option>New patient registration</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="field">
-        <label>Preferred day/time</label>
-        <input type="text" placeholder="e.g. Weekday mornings, or a specific date">
-      </div>
-      <div class="field">
-        <label>Anything else we should know?</label>
-        <textarea rows="3" placeholder="Optional"></textarea>
-      </div>
-      <button type="button" class="btn btn-primary" style="width:100%;justify-content:center;">Request appointment</button>
     </div>
   </div>
 </section>
@@ -555,13 +526,13 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <div class="foot-logo">
+        <a href="#top" class="foot-logo" title="Back to top">
           <svg width="26" height="26" viewBox="0 0 34 34" fill="none">
             <circle cx="17" cy="17" r="16" stroke="#3E8FC4" stroke-width="1.6"/>
             <path d="M5 17H11L14 9L20 25L23 17H29" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           Rapha
-        </div>
+        </a>
         <p style="font-size:13.5px;max-width:260px;">General &amp; family practice in Sunningdale, Cape Town. Registered with the HPCSA.</p>
       </div>
       <div>
@@ -583,6 +554,7 @@
         <h4>Contact</h4>
         <ul>
           <li>021 476 0702</li>
+          <li>+27 63 411 2060</li>
           <li>help@raphamedical.co.za</li>
           <li>Shop G057, Table Bay Mall, Sunningdale</li>
         </ul>
