@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Meridian Family Practice — Cape Town</title>
+<title>Rapha Medical Center — Cape Town</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -154,23 +154,6 @@
   .service-card h3{margin-bottom:8px;font-size:17.5px;}
   .service-card p{font-size:14.5px;}
 
-  /* ---------- Doctors ---------- */
-  .doctors-strip{background:var(--mist);}
-  .doctors-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
-  @media(max-width:860px){.doctors-grid{grid-template-columns:1fr;max-width:420px;margin:0 auto;}}
-  .doctor-card{background:var(--white);border-radius:18px;overflow:hidden;border:1px solid var(--line);}
-  .doctor-photo{
-    aspect-ratio:1/1;background:linear-gradient(160deg,#EAF3F6,#E4EEE2);
-    display:flex;align-items:center;justify-content:center;color:var(--ink-soft);
-    font-family:'IBM Plex Mono',monospace;font-size:12px;
-  }
-  .doctor-info{padding:20px 22px 24px;}
-  .doctor-info .role{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--teal);letter-spacing:.05em;text-transform:uppercase;margin-bottom:6px;display:block;}
-  .doctor-info h3{margin-bottom:6px;}
-  .doctor-info p{font-size:14px;}
-  .doctor-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
-  .doctor-tags span{font-size:12px;background:var(--mist);border:1px solid var(--line);padding:4px 10px;border-radius:999px;color:var(--ink-soft);}
-
   /* ---------- Testimonials ---------- */
   .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
   @media(max-width:860px){.testi-grid{grid-template-columns:1fr;}}
@@ -242,9 +225,10 @@
   .field{margin-bottom:18px;}
   .field label{display:block;font-size:13px;color:#B9CBDA;margin-bottom:7px;font-family:'IBM Plex Mono',monospace;}
   .field input,.field select,.field textarea{
-    width:100%;padding:13px 14px;border-radius:9px;border:1px solid rgba(255,255,255,.18);
+    width:100%;padding:13px 14px;border-radius:99px;border:1px solid rgba(255,255,255,.18);
     background:rgba(255,255,255,.06);color:var(--white);font-family:'Inter',sans-serif;font-size:14.5px;
   }
+  .field textarea{border-radius:9px;}
   .field input::placeholder,.field textarea::placeholder{color:#7C93A6;}
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .contact-card{padding-top:8px;}
@@ -275,18 +259,17 @@
         <circle cx="17" cy="17" r="16" stroke="#1F6FA8" stroke-width="1.6"/>
         <path d="M5 17H11L14 9L20 25L23 17H29" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      Meridian
+      Rapha Medical Center
     </div>
     <nav class="nav-links">
       <a href="#services">Services</a>
-      <a href="#doctors">Our Doctors</a>
       <a href="#testimonials">Patients</a>
       <a href="#faq">FAQ</a>
       <a href="#location">Location</a>
       <a href="#health-tips">Health Tips</a>
     </nav>
     <div class="nav-cta">
-      <span class="nav-phone">+27 21 555 0148</span>
+      <span class="nav-phone">021 476 0702</span>
       <a href="#book" class="btn btn-primary">Book a visit</a>
     </div>
   </div>
@@ -326,7 +309,7 @@
   <div class="wrap trust-row">
     <div><strong>Registered</strong> <span>HPCSA-accredited practitioners</span></div>
     <div><strong>Covered</strong> <span>Major SA medical aids accepted</span></div>
-    <div><strong>Extended</strong> <span>Open Saturdays, 8am–1pm</span></div>
+    <div><strong>Extended</strong> <span>Open Saturdays, 09:00–14:00</span></div>
     <div><strong>Walk-ins</strong> <span>Urgent same-day slots held daily</span></div>
   </div>
 </div>
@@ -388,46 +371,6 @@
 
 <svg class="pulse-divider wrap" viewBox="0 0 1160 44" preserveAspectRatio="none"><path d="M0 22H480 L495 6 L512 38 L528 22 H1160"/></svg>
 
-<!-- ============ DOCTORS ============ -->
-<section class="doctors-strip" id="doctors">
-  <div class="wrap">
-    <div class="section-head">
-      <span class="eyebrow">Meet the team</span>
-      <h2>Doctors who <span class="italic">stick around.</span></h2>
-      <p>Continuity of care matters — our GPs have an average tenure of 9 years at this practice, so you're not re-explaining your history every visit.</p>
-    </div>
-    <div class="doctors-grid">
-      <div class="doctor-card">
-        <div class="doctor-photo">[ Placeholder — Dr. photo ]</div>
-        <div class="doctor-info">
-          <span class="role">Family Medicine</span>
-          <h3>Dr. Amara Ndlovu</h3>
-          <p>MBChB, Dip. Family Medicine — 14 years in practice, focused on chronic care and women's health.</p>
-          <div class="doctor-tags"><span>Chronic care</span><span>Women's health</span></div>
-        </div>
-      </div>
-      <div class="doctor-card">
-        <div class="doctor-photo">[ Placeholder — Dr. photo ]</div>
-        <div class="doctor-info">
-          <span class="role">General Practice</span>
-          <h3>Dr. Pieter van Zyl</h3>
-          <p>MBChB — 9 years in practice, with a special interest in paediatrics and travel medicine.</p>
-          <div class="doctor-tags"><span>Paediatrics</span><span>Travel health</span></div>
-        </div>
-      </div>
-      <div class="doctor-card">
-        <div class="doctor-photo">[ Placeholder — Dr. photo ]</div>
-        <div class="doctor-info">
-          <span class="role">Family Medicine</span>
-          <h3>Dr. Zainab Adams</h3>
-          <p>MBChB, MMed — 11 years in practice, specialising in preventative screening and men's health.</p>
-          <div class="doctor-tags"><span>Preventative care</span><span>Men's health</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ TESTIMONIALS ============ -->
 <section id="testimonials">
   <div class="wrap">
@@ -444,7 +387,7 @@
       </div>
       <div class="testi-card">
         <div class="testi-mark">&ldquo;</div>
-        <p class="quote">Dr. van Zyl has managed my dad's diabetes for years. He actually calls to follow up, which never happened at our old clinic.</p>
+        <p class="quote">The doctor has managed my dad's diabetes for years. They actually call to follow up, which never happened at our old clinic.</p>
         <div class="testi-name">Josh R.</div>
         <div class="testi-role">Patient since 2018</div>
       </div>
@@ -500,15 +443,15 @@
     <div class="loc-grid">
       <div class="map-box"><div class="map-pin"></div></div>
       <div class="loc-info">
-        <h3>Meridian Family Practice</h3>
-        <div class="loc-row"><span class="lab">Address</span><span>142 Kloof Street, Gardens, Cape Town, 8001</span></div>
-        <div class="loc-row"><span class="lab">Phone</span><span>+27 21 555 0148</span></div>
-        <div class="loc-row"><span class="lab">Email</span><span>hello@meridianfamilypractice.co.za</span></div>
+        <h3>Rapha Medical Center</h3>
+        <div class="loc-row"><span class="lab">Address</span><span>Shop G057, Table Bay Mall, Berkshire Blvd, Sunningdale, Cape Town</span></div>
+        <div class="loc-row"><span class="lab">Phone</span><span>021 476 0702</span></div>
+        <div class="loc-row"><span class="lab">Email</span><span>help@raphamedical.co.za</span></div>
         <div class="loc-row" style="align-items:flex-start;">
           <span class="lab">Hours</span>
           <div class="hours-table" style="flex:1;">
-            <div><span>Mon – Fri</span><span>07:30 – 18:00</span></div>
-            <div><span>Saturday</span><span>08:00 – 13:00</span></div>
+            <div><span>Mon – Fri</span><span>09:00 – 17:00</span></div>
+            <div><span>Saturday</span><span>09:00 – 14:00</span></div>
             <div><span>Sunday</span><span>Closed</span></div>
             <div><span>Public holidays</span><span>Closed</span></div>
           </div>
@@ -567,9 +510,9 @@
       <p style="margin-top:14px;max-width:420px;">Fill in the form and our front desk will confirm your slot within one business day. For anything urgent, please call us directly rather than waiting on a form.</p>
 
       <div class="contact-card" style="margin-top:36px;">
-        <div class="loc-row"><span class="lab">Call</span><div>+27 21 555 0148</div></div>
-        <div class="loc-row"><span class="lab">Email</span><div>hello@meridianfamilypractice.co.za</div></div>
-        <div class="loc-row"><span class="lab">Visit</span><div>142 Kloof Street, Gardens, Cape Town</div></div>
+        <div class="loc-row"><span class="lab">Call</span><div>021 476 0702</div></div>
+        <div class="loc-row"><span class="lab">Email</span><div>help@raphamedical.co.za</div></div>
+        <div class="loc-row"><span class="lab">Visit</span><div>Shop G057, Table Bay Mall, Berkshire Blvd, Sunningdale, Cape Town, 7441.</div></div>
       </div>
 
       <div class="emergency">In a medical emergency, do not use this form — call 10177 or go to your nearest emergency room.</div>
@@ -617,15 +560,14 @@
             <circle cx="17" cy="17" r="16" stroke="#3E8FC4" stroke-width="1.6"/>
             <path d="M5 17H11L14 9L20 25L23 17H29" stroke="#E8604C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          Meridian
+          Rapha
         </div>
-        <p style="font-size:13.5px;max-width:260px;">General &amp; family practice in Gardens, Cape Town. Registered with the HPCSA.</p>
+        <p style="font-size:13.5px;max-width:260px;">General &amp; family practice in Sunningdale, Cape Town. Registered with the HPCSA.</p>
       </div>
       <div>
         <h4>Practice</h4>
         <ul>
           <li><a href="#services">Services</a></li>
-          <li><a href="#doctors">Our doctors</a></li>
           <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
@@ -640,15 +582,14 @@
       <div>
         <h4>Contact</h4>
         <ul>
-          <li>+27 21 555 0148</li>
-          <li>hello@meridianfamilypractice.co.za</li>
-          <li>142 Kloof Street, Gardens</li>
+          <li>021 476 0702</li>
+          <li>help@raphamedical.co.za</li>
+          <li>Shop G057, Table Bay Mall, Sunningdale</li>
         </ul>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>© 2026 Meridian Family Practice. All rights reserved.</span>
-      <span>Placeholder site — replace copy, photos & details before launch.</span>
+      <span>© 2026 Rapha Medical Center. All rights reserved.</span>
     </div>
   </div>
 </footer>
